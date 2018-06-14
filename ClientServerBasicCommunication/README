@@ -65,6 +65,4 @@ CLARIFICATION ABOUT DESIGN CHOICE:
   the end to make it easier to test if r_port is re-selected correctly if 
   the pre-selected port is unavailable. (After first client is finished, it
   uses the preselected r_port and the server would have to select a new r_port
-  for the subsequent clients). you can close the listener by uncommenting the 
-  "mainSocket.close()" line at the end of the code. (please dont take marks off 
-   for this :) ). 
+  for the subsequent clients).
