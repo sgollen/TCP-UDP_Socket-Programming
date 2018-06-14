@@ -66,14 +66,17 @@ REFERENCES:
 
 
 CLARIFICATION ABOUT DESIGN CHOICE:
-- Incorrect number of arguments or invalid arguments will cause program to print warning message and exit. Please read
-  the instructions carefully as run order matters. eMulator should be run first, then the receiver,and then sender.
-  The sender will parse the file by put EACH LINE into a custom packet class, and then send it to the receiver through
-  the emulator. The receiver will discard any out of order packet, and send the packet contain the last acked packet
-  number to the sender. The sender will only move the sendBase when receive a valid ack, and will ignore all invalid
-  or out of place acks(since emulator can delay achs and make them arrive late) sent by the receiver.The sandbase
-  variable is moved to (valid ack + 1) upon a valid ach. All sequence number are in mod 32. During transmission, sender
-  will using seqnum.log to track all the packets out, and ack.log track all the acks in.  The receiver will use
-  arrival.log to track all the packets in. Lastly, sender will send a EOT and wait for the EOT packet from receiver
-  before exiting. If a receiver receives an in order EOT packet from the sender, it will send an EOT packet to sender
-  and exit. It was stated that EOT are never lost through the emulator.
+- Incorrect number of arguments or invalid arguments will cause program to print warning
+  message and exit. Please read the instructions carefully as run order matters. eMulator 
+  should be run first, then the receiver,and then sender. The sender will parse the file
+  by put EACH LINE into a custom packet class, and then send it to the receiver through 
+  the emulator. The receiver will discard any out of order packet, and send the packet 
+  contain the last acked packet number to the sender. The sender will only move the sendBase
+  when receive a valid ack, and will ignore all invalid or out of place acks(since emulator 
+  can delay achs and make them arrive late) sent by the receiver.The sandbase variable is 
+  moved to (valid ack + 1) upon a valid ach. All sequence number are in mod 32. During 
+  transmission, sender will using seqnum.log to track all the packets out, and ack.log track 
+  all the acks in.  The receiver will use arrival.log to track all the packets in. Lastly,
+  sender will send a EOT and wait for the EOT packet from receiver before exiting. If a 
+  receiver receives an in order EOT packet from the sender, it will send an EOT packet to 
+  sender and exit. It was stated that EOT are never lost through the emulator.
