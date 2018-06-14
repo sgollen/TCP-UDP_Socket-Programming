@@ -69,7 +69,7 @@ CLARIFICATION ABOUT DESIGN CHOICE:
 - Incorrect number of arguments or invalid arguments will cause program to print warning
   message and exit. Please read the instructions carefully as run order matters. eMulator 
   should be run first, then the receiver,and then sender. The sender will parse the file
-  by put EACH LINE into a custom packet class, and then send it to the receiver through 
+  by putting each line into a custom packet class, and then send it to the receiver through 
   the emulator. The receiver will discard any out of order packet, and send the packet 
   contain the last acked packet number to the sender. The sender will only move the sendBase
   when receive a valid ack, and will ignore all invalid or out of place acks(since emulator 
