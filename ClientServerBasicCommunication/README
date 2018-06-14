@@ -1,0 +1,70 @@
+                          Name: Samaksh Gollen, ID: 20484987
+
+INSTRUCTIONS FOR COMPILING:
+- The program can be compiled by executing "make" command.
+
+
+INSTRUCTIONS FOR RUNNING:
+- Please run the server first with appropriate arguments.
+- The n_port given by the server should be used as an argument for the client.
+- Please run the client with appropriate arguments.
+- server never exits until manually terminated using Ctrl C.
+- client exits on completion and when it sends a wrong req_code(timeout).
+
+SERVER
+Number of parameters: 1
+Parameter:
+    $1: <req_code>
+To run the server execute:  java server $1
+
+CLIENT
+Number of parameters: 4
+Parameter:
+    $1: <server_address>
+    $2: <n_port>
+    $3: <req_code>
+    $4: message
+To run the client execute: java client $1 $2 $3 "$4"
+
+EXAMPLE EXECUTION: 
+- java server 13
+- Use the port printed out by the server. Assume 1234 in this case
+- java client 127.0.0.1 1234 13 'hello'
+
+THE PROGRAM WAS BUILT AND TESTED ON:
+- University of Waterloo student environments
+- ubuntu1604-006 is used to run the server
+- ubuntu1604-002 is used to run the client
+
+
+VERSION OF MAKE USED:
+- GNU Make 4.1
+- Built for x86_64-pc-linux-gnu
+
+
+VERSION OF JAVA COMPILER USED:
+- javac 9-internal
+
+
+REFERENCES: 
+- Help from the sample code of TCP/UDP socket programming
+  in java from module 2 page 93-102 of the previous version of the 
+  course textbook was used.
+- docs.oracle.com (Oracle help Center SE 7).
+
+
+CLARIFICATION ABOUT DESIGN CHOICE:
+- if the req_code sent by the client is wrong, the server does nothing
+  and keeps listening to the n_port. The client exits (takes 1 second),
+  using timeout method of the datagram socket. The req_code is sent and 
+  compared as a string, as the req_code passed on the command line is 
+  considered a string (avoid conversion complications). Initially, the 
+  n_port and r_port are selected manually and if the port is unavailable 
+  then a new port is chosen. This follows the design suggestion in A1 FAQs.
+  Lastly, the connection socket of the transaction socket is not closed in 
+  the end to make it easier to test if r_port is re-selected correctly if 
+  the pre-selected port is unavailable. (After first client is finished, it
+  uses the preselected r_port and the server would have to select a new r_port
+  for the subsequent clients). you can close the listener by uncommenting the 
+  "mainSocket.close()" line at the end of the code. (please dont take marks off 
+   for this :) ). 
